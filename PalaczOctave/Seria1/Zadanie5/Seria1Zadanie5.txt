@@ -1,0 +1,19 @@
+% Deklaracja zmiennej x jako liczby zmiennoprzecinkowej podwójnej precyzji - kazda w octave jest
+x = 7;
+
+% Konwersja na 8-bitową liczbę całkowitą
+y = uint8(x);
+
+% Wyświetlenie typów zmiennych
+whos x y
+
+% Wyświetlenie wartości zmiennych
+disp(['Wartość x: ' num2str(x)])
+disp(['Wartość y: ' num2str(y)])
+
+% Konwersja na wartość logiczną
+z = logical(x);
+
+% Wyświetlenie typu i wartości zmiennej z
+whos z
+disp(['Wartość z: ' num2str(z)])

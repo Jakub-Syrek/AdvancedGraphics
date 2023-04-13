@@ -1,0 +1,26 @@
+pkg load image
+
+% declare filenames for the images
+img1_file = 'fox-512x512.png';
+img2_file = 'bird_512x512.png';
+
+% wczytanie obrazów
+img1 = imread(img1_file);
+img2 = imread(img2_file);
+
+% wybieranie lewej połowy pierwszego obrazka
+img1_left = img1(:, 1:end/2, :);
+
+% wybieranie prawej połowy drugiego obrazka
+img2_right = img2(:, end/2+1:end, :);
+
+% zmiana rozmiaru drugiego obrazka
+img2_right_resized = imresize(img2_right, size(img1_left, [1 2]));
+
+% połączenie obrazów w kolaż
+collage = cat(2, img1_left, img2_right_resized);
+
+% zapisanie kolażu do pliku
+imwrite(collage, 'modified_collage1.png');
+
+imshow(collage);

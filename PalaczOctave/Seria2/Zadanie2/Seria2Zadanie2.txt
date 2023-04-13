@@ -1,0 +1,15 @@
+Funkcja conv2 działa na macierzach dwuwymiarowych, które reprezentują obraz. Działa ona na zasadzie przesuwania filtru po całym obrazie i wykonuje operację iloczynu skalarnego między filtrami a danymi w każdej pozycji obrazu, aby wygenerować nową macierz wyjściową.
+
+Funkcja imfilter działa na podobnej zasadzie jak conv2, ale ma nieco więcej funkcjonalności. imfilter umożliwia stosowanie różnych filtrów i operacji, takich jak wykrywanie krawędzi, wyostrzanie, wygładzanie itp.
+
+Przykładowo, do wykrywania krawędzi można zastosować filtr Sobela, który jest dostępny w imfilter. Filtr Sobela oblicza gradient w pionie i poziomie w obrazie i następnie oblicza normę euklidesową tych dwóch gradientów. Wynikowa macierz reprezentuje krawędzie w obrazie.
+
+Oto przykład zastosowania funkcji imfilter z filtrem Sobela do obrazu:
+
+scss
+Copy code
+img = imread('bird.png');
+filter = [-1 0 1; -2 0 2; -1 0 1];
+edges = imfilter(img, filter);
+imshow(edges);
+Wynikowy obraz edges będzie zawierał tylko krawędzie z oryginalnego obrazu img.

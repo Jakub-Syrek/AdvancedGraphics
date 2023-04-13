@@ -1,0 +1,33 @@
+pkg load image
+
+% wczytanie obrazka
+bird = imread('bird_512x512.png');
+
+% konwersja na obraz w skali szarości
+bird_gray = rgb2gray(bird);
+
+% obliczenie gradientu Sobela
+sobel_x = [-1, 0, 1; -2, 0, 2; -1, 0, 1];
+sobel_y = [-1, -2, -1; 0, 0, 0; 1, 2, 1];
+gradient_x = imfilter(double(bird_gray), sobel_x);
+gradient_y = imfilter(double(bird_gray), sobel_y);
+gradient = sqrt(gradient_x.^2 + gradient_y.^2);
+
+% progowanie obrazu gradientu
+threshold = 50;
+edges = gradient > threshold;
+
+% zamiana koloru konturu na czerwony
+red = uint8([255 0 0]);
+output = bird;
+for i = 1:size(output, 1)
+    for j = 1:size(output, 2)
+        if edges(i, j)
+            output(i, j, :) = red;
+        end
+    end
+end
+
+% zapisanie wyniku do pliku PNG i wyświetlenie
+imwrite(output, 'bird_edges.png');
+imshow(output);

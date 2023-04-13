@@ -1,0 +1,21 @@
+pkg load image
+
+% Wczytanie obrazu
+img = imread('bird_512x512.png');
+% Konwersja na skalę szarości
+gray_img = rgb2gray(img);
+% Konwersja na double
+gray_img = im2double(gray_img);
+
+% Zdefiniowanie maski wygładzającej
+filt_size = 11;
+sigma = 2;
+filt = fspecial('gaussian', filt_size, sigma);
+
+% Wygładzenie obrazu adaptacyjnym filtrem konwolucyjnym
+out = imfilter(gray_img, filt);
+
+% Wyświetlenie obrazu oryginalnego i przefiltrowanego
+figure;
+subplot(1,2,1); imshow(gray_img); title('Oryginał');
+subplot(1,2,2); imshow(out); title('Wygładzony');

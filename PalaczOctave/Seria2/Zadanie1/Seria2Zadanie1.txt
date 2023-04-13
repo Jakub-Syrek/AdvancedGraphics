@@ -1,0 +1,59 @@
+%1
+pkg load image  % załadowanie pakietu image
+
+% wczytanie obrazka
+bird = imread('bird_512x512.png');
+
+% przygotowanie maski filtru (dolnoprzepustowego)
+maska = fspecial('average', [5 5]);
+
+% filtrowanie splotowe za pomocą funkcji imfilter
+filtered_bird = imfilter(double(bird), maska, 'replicate');
+
+% skalowanie wartości do zakresu 0-1
+filtered_bird = filtered_bird / 255;
+
+% przycięcie wartości do dopuszczalnego zakresu
+filtered_bird = min(max(filtered_bird, 0), 1);
+
+% wyświetlenie obrazka po filtracji splotowej
+subplot(1,2,1);
+imshow(bird);
+title('Oryginał');
+
+subplot(1,2,2);
+imshow(filtered_bird);
+title('Filtrowanie splotowe');
+
+
+
+
+
+
+
+%2
+pkg load image
+
+% wczytanie obrazka
+bird = imread('bird_512x512.png');
+
+% przygotowanie maski filtru (górnoprzepustowego)
+maska = [-1 -1 -1; -1 8 -1; -1 -1 -1];
+
+% filtrowanie splotowe za pomocą funkcji imfilter
+filtered_bird = imfilter(double(bird), maska);
+
+% skalowanie wartości do zakresu 0-1
+filtered_bird = filtered_bird / 255;
+
+% przycięcie wartości do dopuszczalnego zakresu
+filtered_bird = min(max(filtered_bird, 0), 1);
+
+% wyświetlenie obrazka po filtracji splotowej
+subplot(1,2,1);
+imshow(bird);
+title('Oryginał');
+
+subplot(1,2,2);
+imshow(filtered_bird);
+title('Filtrowanie splotowe');

@@ -1,0 +1,12 @@
+pkg load image
+% Wczytanie obrazu
+coins = imread('coins.jpg');
+% Konwersja na skalę szarości
+gray_coins = rgb2gray(coins);
+% Binaryzacja z wykorzystaniem adaptacyjnego progu
+threshold = graythresh(gray_coins);
+binary_coins = im2bw(gray_coins, threshold);
+% Wyświetlenie obrazu oryginalnego i przefiltrowanego
+figure;
+subplot(1,2,1); imshow(gray_coins); title('Oryginał');
+subplot(1,2,2); imshow(binary_coins); title('Binaryzacja');

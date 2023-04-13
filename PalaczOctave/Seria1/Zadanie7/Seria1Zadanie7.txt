@@ -1,0 +1,25 @@
+%Konwersja kolorowego obrazu do odcieni szarości. 
+%Zaimplementuj dwie wersje: w pierwszej użyj wzoru (r + g + b) / 3, w drugiej 0.299 * r + 0.587 * g + 0.114 * b. 
+%Porównaj otrzymane wyniki. 
+%Czy widzisz między nimi różnice? Który z nich wydaje się mieć jasność bliższą kolorowemu oryginałowi?
+%Jeśli widzisz bardzo wyraźne różnice, zwłaszcza w jasnych fragmentach obrazu, to znaczy że konwersja została źle zaimplementowana. Cofnij się do poprzedniego punktu i przemyśl, co z niego wynika.
+
+pkg load image
+
+% wczytanie obrazu
+img = imread('bird_512x512.png');
+
+% konwersja z użyciem wzoru (r + g + b) / 3
+gray1 = (img(:,:,1) + img(:,:,2) + img(:,:,3)) / 3;
+
+% konwersja z użyciem wzoru 0.299 * r + 0.587 * g + 0.114 * b
+gray2 = 0.299 * img(:,:,1) + 0.587 * img(:,:,2) + 0.114 * img(:,:,3);
+
+% konwersja z użyciem wbudowanej funkcji rgb2gray
+gray3 = rgb2gray(img);
+
+% wyświetlenie wyników
+subplot(2, 2, 1), imshow(img), title('Oryginalny');
+subplot(2, 2, 2), imshow(gray1), title('Wzór (r + g + b) / 3');
+subplot(2, 2, 3), imshow(gray2), title('Wzór 0.299 * r + 0.587 * g + 0.114 * b');
+subplot(2, 2, 4), imshow(gray3), title('Funkcja rgb2gray');

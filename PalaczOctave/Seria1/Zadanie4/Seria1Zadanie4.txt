@@ -1,0 +1,19 @@
+% Ustawienie seeda dla powtarzalności wyników
+rand('seed', 0);
+
+% Wygenerowanie macierzy 10x10 z losowymi wartościami zmiennoprzecinkowymi
+A = rand(10);
+
+% Sprawdzenie wartości minimalnej i maksymalnej
+min_value = min(min(A));
+max_value = max(max(A));
+fprintf('Wartości minimalna i maksymalna: %f, %f\n', min_value, max_value);
+
+% Przycięcie wartości poza przedziałem [0,1]
+A(A < 0) = 0;
+A(A > 1) = 1;
+
+% Sprawdzenie wartości minimalnej i maksymalnej po przycięciu
+min_value = min(min(A));
+max_value = max(max(A));
+fprintf('Wartości minimalna i maksymalna po przycięciu: %f, %f\n', min_value, max_value);

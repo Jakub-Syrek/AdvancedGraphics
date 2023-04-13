@@ -1,0 +1,18 @@
+%Co się dzieje, gdy w wyniku dodawania wartości typu uint8 otrzymamy wynik wykraczający poza przedział dopuszczalnych wartości tego typu? To nie %jest arytmetyka ze szkoły podstawowej, nie jest też arytmetyka modulo, więc co?
+
+% Utworzenie dwóch macierzy o wymiarach 3x3 z wartościami typu uint8
+a = uint8([255 255 255; 255 255 255; 255 255 255]);
+b = uint8([1 1 1; 1 1 1; 1 1 1]);
+
+% Dodanie wartości do siebie
+c = a + b;
+
+% Wyświetlenie macierzy c
+disp(c);
+Opis:
+
+%Tworzymy dwie macierze o wymiarach 3x3, a każda z komórek ma wartość maksymalną dla typu uint8 (255).
+%Dodajemy do siebie macierze a i b, a wynik przypisujemy do macierzy c.
+%Wyświetlamy macierz c.
+%Odpowiedź:
+%W przypadku typu uint8, wartości spoza zakresu 0-255 są ucinane do najbliższej wartości dopuszczalnej. W tym przykładzie, dodając wartości 255 do %1, wynik był równy 256, co wykracza poza zakres wartości typu uint8, więc został ucięty do wartości maksymalnej (255). Wynik dodawania 1 do 255 w %typie uint8 będzie zawsze równy 0, ponieważ wartość 256 zostanie ucięta do 0.

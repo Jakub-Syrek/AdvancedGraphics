@@ -1,0 +1,12 @@
+pkg load image
+% declare filenames for the images
+img1_file = 'woman_512-512-3-RGB.png';
+% wczytanie obrazów
+img1 = imread(img1_file);
+% zmiana wartości pikseli
+img1(:, 30:50, 3) = 255;
+% zapisanie wyniku do pliku
+imwrite(img1, 'c:\tmp\modified_woman.png');
+% wyświetlenie zmodyfikowanego obrazka
+imshow(img1);
+title('Zmodyfikowany');

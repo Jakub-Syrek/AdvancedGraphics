@@ -1,0 +1,35 @@
+function out = myrgb2gray(in)
+% funkcja konwertująca obraz RGB na obraz w odcieniach szarości
+% wejście: obraz RGB (macierz trójwymiarowa)
+% wyjście: obraz w odcieniach szarości (macierz dwuwymiarowa)
+
+% sprawdzenie, czy obraz wejściowy jest już w odcieniach szarości
+if ndims(in) == 2
+    % jeśli tak, to zwróć go bez przeliczeń
+    out = in;
+    return;
+end
+
+% obliczenie odcieni szarości zgodnie z wzorem 0.299 * r + 0.587 * g + 0.114 * b
+out = 0.299 * double(in(:,:,1)) + 0.587 * double(in(:,:,2)) + 0.114 * double(in(:,:,3));
+
+% zaokrąglenie wyników do liczby całkowitej 8-bitowej
+out = uint8(out);
+
+end
+
+pkg load image
+% wczytanie obrazka
+bird = imread('bird_512x512.png');
+
+% konwersja do odcieni szarości
+gray_bird = myrgb2gray(bird);
+
+% wyświetlenie oryginalnego obrazka i jego wersji w odcieniach szarości
+subplot(1,2,1)
+imshow(bird)
+title('Oryginał')
+subplot(1,2,2)
+imshow(gray_bird)
+title('Odcienie szarości')
+
